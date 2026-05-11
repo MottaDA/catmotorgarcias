@@ -239,7 +239,7 @@ function sendWhatsAppMessage() {
 
 async function loadProductsFromServer() {
     try {
-        const res = await fetch('http://localhost:3000/productos');
+        const res = await fetch('https://catmotor-api.onrender.com/productos');
         const data = await res.json();
 
         const contenedor = document.querySelector('#listproducts');
