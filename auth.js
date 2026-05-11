@@ -73,10 +73,38 @@ async function logout(){
 
   window.location.href = 'login.html';
 }
-async function usuarioLogueado(){
+
+async function actualizarBotonAuth(){
 
   const { data } =
     await supabaseClient.auth.getSession();
 
-  return data.session;
+  const authLink =
+    document.getElementById('auth-link');
+
+  if(!authLink) return;
+
+  if(data.session){
+
+    authLink.innerHTML = `
+      <a href="#" onclick="logout()">
+        Cerrar Sesión
+      </a>
+    `;
+
+  }else{
+
+    authLink.innerHTML = `
+      <a href="login.html">
+        Iniciar Sesión
+      </a>
+    `;
+  }
+}
+
+async function logout(){
+
+  await supabaseClient.auth.signOut();
+
+  window.location.href = 'index.html';
 }

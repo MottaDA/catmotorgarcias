@@ -275,19 +275,3 @@ async function loadProductsFromServer() {
     }
 }
 
-async function exportCartToExcel(){
-
-  const session =
-    await usuarioLogueado();
-
-  if(!session){
-
-    alert('Debes iniciar sesión');
-
-    window.location.href = 'login.html';
-
-    return;
-  }
-
-  alert('Compra realizada');
-}

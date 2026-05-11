@@ -23,7 +23,8 @@
                         <li><a href="Productos.html">Productos</a></li>
                         <li><a href="Otras.html">Otras</a></li>
                         <li><a href="ayuda">Ayuda</a></li>
-                        <li><a href="login.html">Iniciar Sesión</a></li>
+                        <li id="auth-link"></li>
+
                     </ul>
                 </nav>
                 
@@ -128,13 +129,15 @@
     </div>
 </section>
 
-<button onclick="logout()">
-  Cerrar sesión
-</button>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="auth.js"></script>
+
+<script>
+  actualizarBotonAuth();
+</script>
 
  
 </body>
