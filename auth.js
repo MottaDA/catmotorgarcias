@@ -22,12 +22,15 @@ async function login(){
 
   if(error){
 
-    alert(error.message);
+    mostrarToast(
+  traducirError(error.message),
+  'error'
+);
 
     return;
   }
 
-  alert('Login exitoso');
+  mostrarToast('Inicio de sesión exitoso');
 
   window.location.href = 'index.html';
 }
@@ -48,12 +51,12 @@ async function register(){
 
   if(error){
 
-    alert(error.message);
+    mostrarToast(error.message, 'error');
 
     return;
   }
 
-  alert('Revisa tu correo');
+  mostrarToast('Revisa tu correo para confirmar la cuenta');
 }
 
 async function verificarSesion(){
@@ -107,4 +110,142 @@ async function logout(){
   await supabaseClient.auth.signOut();
 
   window.location.href = 'index.html';
+}
+
+function mostrarToast(mensaje, tipo = 'success'){
+
+  const toast =
+    document.getElementById('toast');
+
+  toast.textContent = mensaje;
+
+  toast.className = `
+    show ${tipo}
+  `;
+
+  setTimeout(() => {
+
+    toast.className =
+      toast.className.replace('show', '');
+
+  }, 3000);
+}
+
+async function verificarUsuarioLogueado(){
+
+  const { data } =
+    await supabaseClient.auth.getSession();
+
+  if(data.session){
+
+    window.location.href = 'index.html';
+  }
+}
+
+async function recuperarPassword(){
+
+  const email =
+    document.getElementById('email').value;
+
+  if(!email){
+
+    mostrarToast(
+      'Ingresa tu correo',
+      'error'
+    );
+
+    return;
+  }
+
+  const { error } =
+    await supabaseClient.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo:
+          'reset-password.html'
+      }
+    );
+
+  if(error){
+
+    mostrarToast(
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+  mostrarToast(
+    'Correo de recuperación enviado'
+  );
+}
+
+
+function traducirError(error){
+
+  if(
+    error.includes(
+      'Invalid login credentials'
+    )
+  ){
+
+    return 'Correo o contraseña incorrectos';
+  }
+
+  if(
+    error.includes(
+      'Password should be at least'
+    )
+  ){
+
+    return 'La contraseña debe tener mínimo 6 caracteres';
+  }
+
+  if(
+    error.includes(
+      'User already registered'
+    )
+  ){
+
+    return 'Este correo ya está registrado';
+  }
+
+  return error;
+}
+
+async function actualizarPassword(){
+
+  const password =
+    document.getElementById(
+      'new-password'
+    ).value;
+
+  const { error } =
+    await supabaseClient.auth.updateUser({
+
+      password: password
+
+    });
+
+  if(error){
+
+    mostrarToast(
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+  mostrarToast(
+    'Contraseña actualizada'
+  );
+
+  setTimeout(() => {
+
+    window.location.href =
+      'login.html';
+
+  }, 2000);
 }

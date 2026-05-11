@@ -10,10 +10,11 @@
 </head>
 
 <body>
+    
+    <div id="toast"></div>
+    <div class="login-container">
 
-  <div class="login-container">
-
-    <img src="img/logo.png" class="logo">
+    <img src="Imagenes/Logo.png" class="logo">
     <h1>Iniciar sesión</h1>
 
     <input
@@ -36,11 +37,22 @@
       Registrarse
     </button>
 
+    <button
+  class="forgot-btn"
+  onclick="recuperarPassword()"
+>
+  Recuperar contraseña
+</button>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script src="auth.js"></script>
+
+  <script>
+  verificarUsuarioLogueado();
+</script>
 
 </body>
 </html>
