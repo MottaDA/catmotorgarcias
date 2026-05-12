@@ -1,34 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head> 
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Distribuidora de Lujos y Repuestos para motos">
-
-    <title> Productos</title>
-   
-    
+    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
+    <title>Cat Motor Garcias - Otras</title>
+    <link rel="stylesheet" href="styleprueba.css">
+    <script src="script.js"></script>
 </head>
-
 <body>
-
     <header>
-        <div class="conteiner"> 
-         <img class ="logo-1" src="link de logo" alt=""> 
-         <input type="checkbox" id="menu">
-         <label for="menu">
-            <img src="imagen menu" class="menu-icono" alt="">
-         </label>
-         <nav class="navbar">
-            <div> 
+        <div class="encabezado">
+            <div class="menu-container">
+                <div class="logo-container">
+                    <img class="logo1" src="imagenes/Logo.png" alt="Cat Motor Garcias Logo">
+                </div>
+                
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="Index.html">Inicio</a></li>
+                        <li><a href="Productos.html">Productos</a></li>
+                        <li><a href="Otras.html" class="active">Otras</a></li>
+                        <li><a href="ayuda">Ayuda</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="search-cart-container">
+                    <div class="search-container">
+                        <form action="" method="GET">
+                            <i class="fa fa-magnifying-glass"></i>
+                            <input type="text" name="q" placeholder="Buscar..." required autocomplete="off">
+                        </form>
+                    </div>
+                    
+                    <div class="btn-cart">
+                        <button type="button" aria-label="Carrito de compras">
+                            <i class="fa-solid fa-cart-shopping icon-cart"></i>
+                            <span id="cartCount">0</span>
+                        </button>
+                        
+                        <div class="cart">
+                            <div class="cart-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Descripción</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="contentProducts">
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="total">
+                                                <h4 class="heading-total">Total: <span id="total"></span></h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <button type="button" id="emptyCart">Vaciar Carrito</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Menú móvil">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Otras Secciones</h1>
+            <p>Explora más contenido de Cat Motor Garcías</p>
+        </section>
+
+        <section class="contenedor-otras">
+            <h2>Servicios Adicionales</h2>
+            <p>Contenido de la sección Otras próximamente...</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Cat Motor Garcias</h4>
                 <ul>
-                    <li><a href="Index.html">Inicio</a></li>
-                    <li><a href="Servicios.html">Servicios</a></li>
-                    <li><a href="Productos.html">Productos</a></li>
-                    <li><a href="#">Otras</a></li>
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                    <li><a href="#">Lorem</a></li>
                 </ul>
             </div>
-</body>
+            <div class="footer-column">
+                <h4>Comprar</h4>
+                <ul>
+                    <li><a href="#">Cómo comprar</a></li>
+                    <li><a href="#">Ventas al por Mayor</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Problemas</a></li>
+                    <li><a href="#">Garantias</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>No ves algo?</h4>
+                <ul>
+                    <li><a href="#">Pregunta</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+            </div>
+            <div class="footer-column social2">
+                <h4>Síguenos</h4>
+                <div class="social2-icons">
+                    <a href="#">FB</a>
+                    <a href="#">IG</a>
+                    <a href="#">TW</a>
+                    <a href="#">DC</a>
+                </div>
+            </div>
+            <div class="footer-column apps">
+                <h4>Otras</h4>
+                <img src="googleplay.png" alt="Google Play">
+                <img src="appstore.png" alt="App Store">
+            </div>
+        </div>
+    </footer>
 
+</body>
 </html>
