@@ -89,48 +89,216 @@
         </div>
     </header>
 
-<section class="hero">
-<h1>¡Bienvenido a Cat Motor Garcías!</h1>
-<p>Distribuidora de Lujos y Repuestos para tu Moto</p>
-<a href="Productos.html" class="btn">Ver productos</a>
-</section>
-
-<section class="productos-destacados">
-  <h2>Productos Destacados</h2>
-  <div class="contenedor-productos2">
-    
-    <div class="producto" data-id="1">
-        <a href="p1.html">
-        <img src="Imagenes/Logo.png" alt="Aceite">
-        </a>
-        <h3>Aceite</h3>
-        <p class="descripcion">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <p class="precio">$50.000</p>
-        <button class="btn-agregar">Agregar al Carrito</button>
+ <!-- Modal pedido WhatsApp -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Completar Pedido</h3>
+            <form id="clientForm">
+                <div class="form-group">
+                    <label for="clientName">Nombre Completo*</label>
+                    <input type="text" id="clientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">Teléfono*</label>
+                    <input type="tel" id="clientPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientAddress">Dirección de envío</label>
+                    <input type="text" id="clientAddress">
+                </div>
+                <div class="form-group">
+                    <label for="clientNotes">Notas adicionales</label>
+                    <textarea id="clientNotes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">
+                    <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                </button>
+            </form>
+        </div>
     </div>
 
-    <div class="producto" data-id="1">
-        <a href="p1.html">
-        <img src="Imagenes/Logo.png" alt="Aceite">
-        </a>
-        <h3>Aceite</h3>
-        <p class="descripcion">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <p class="precio">$50.000</p>
-        <button class="btn-agregar">Agregar al Carrito</button>
-    </div>
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>¡Bienvenido a Cat Motor Garcías!</h1>
+        <p>Distribuidora de Lujos y Repuestos para tu Moto</p>
+        <a href="Productos.html" class="btn">Ver productos</a>
+    </section>
 
-    <div class="producto" data-id="1">
-        <a href="p1.html">
-        <img src="Imagenes/Logo.png" alt="Aceite">
-        </a>
-        <h3>Aceite</h3>
-        <p class="descripcion">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <p class="precio">$50.000</p>
-        <button class="btn-agregar">Agregar al Carrito</button>
-    </div>
-</section>
+    <!-- Riel de productos aleatorios -->
+    <section class="riel-section">
+        <div class="riel-header">
+            <h2>Productos Destacados</h2>
+            <a href="Productos.html" class="ver-todos">Ver todos →</a>
+        </div>
+
+        <div class="riel-wrapper">
+            <button class="riel-btn riel-prev" aria-label="Anterior">&#8249;</button>
+            <div class="riel-viewport">
+                <div class="riel-track" id="rielTrack">
+                    <!-- skeletons mientras carga -->
+                    <div class="producto-riel skeleton"></div>
+                    <div class="producto-riel skeleton"></div>
+                    <div class="producto-riel skeleton"></div>
+                    <div class="producto-riel skeleton"></div>
+                </div>
+            </div>
+            <button class="riel-btn riel-next" aria-label="Siguiente">&#8250;</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Cat Motor Garcias</h4>
+                <ul>
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Comprar</h4>
+                <ul>
+                    <li><a href="#">Cómo comprar</a></li>
+                    <li><a href="#">Ventas al por Mayor</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Problemas</a></li>
+                    <li><a href="#">Garantias</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>No ves algo?</h4>
+                <ul>
+                    <li><a href="#">Pregunta</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+            </div>
+            <div class="footer-column social2">
+                <h4>Síguenos</h4>
+                <div class="social2-icons">
+                    <a href="#">FB</a>
+                    <a href="#">IG</a>
+                    <a href="#">TW</a>
+                    <a href="#">DC</a>
+                </div>
+            </div>
+            <div class="footer-column apps">
+                <h4>Otras</h4>
+                <img src="googleplay.png" alt="Google Play">
+                <img src="appstore.png" alt="App Store">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts al final del body -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+    // ── Riel de productos ──────────────────────────────────────────
+    (async function initRiel() {
+        const track    = document.getElementById('rielTrack');
+        const prevBtn  = document.querySelector('.riel-prev');
+        const nextBtn  = document.querySelector('.riel-next');
+        let allProducts = [];
+        let currentIndex = 0;
+        const VISIBLE = 4;
+        let autoTimer = null;
+
+        function getCardWidth() {
+            const card = track.querySelector('.producto-riel:not(.skeleton)');
+            if (!card) return 236; // 220px + 16px gap
+            const style = window.getComputedStyle(track);
+            const gap   = parseInt(style.gap || style.columnGap || '16', 10);
+            return card.offsetWidth + gap;
+        }
+
+        function renderCards(products) {
+            track.innerHTML = '';
+            products.forEach(p => {
+                const div = document.createElement('div');
+                div.classList.add('producto-riel');
+                div.setAttribute('data-id', p.id);
+                div.innerHTML = `
+                    <a href="#">
+                        <img src="${p.imagen}" alt="${p.nombre}"
+                             onerror="this.src='imagenes/Logo.png'">
+                    </a>
+                    <h3>${p.nombre}</h3>
+                    <p class="descripcion">${p.descripcion}</p>
+                    <p class="precio">$${Number(p.precio).toLocaleString('es-CO')}</p>
+                    <button class="btn-agregar" type="button" data-id="${p.id}"
+                        ${p.disponible ? '' : 'disabled'}>
+                        ${p.disponible ? 'Agregar al Carrito' : 'No disponible'}
+                    </button>
+                `;
+                track.appendChild(div);
+            });
+        }
+
+        function slideTo(index) {
+            const maxIndex = Math.max(0, allProducts.length - VISIBLE);
+            currentIndex   = Math.max(0, Math.min(index, maxIndex));
+            track.style.transform = `translateX(-${currentIndex * getCardWidth()}px)`;
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= maxIndex;
+        }
+
+        function startAuto() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(() => {
+                const maxIndex = Math.max(0, allProducts.length - VISIBLE);
+                slideTo(currentIndex >= maxIndex ? 0 : currentIndex + 1);
+            }, 4000);
+        }
+
+        prevBtn.addEventListener('click', () => { slideTo(currentIndex - 1); startAuto(); });
+        nextBtn.addEventListener('click', () => { slideTo(currentIndex + 1); startAuto(); });
+
+        // Soporte swipe táctil
+        let touchStartX = 0;
+        track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { slideTo(currentIndex + (diff > 0 ? 1 : -1)); startAuto(); }
+        });
+
+        // Agregar al carrito desde el riel (usa selectData del script.js)
+        track.addEventListener('click', e => {
+            if (e.target.classList.contains('btn-agregar') && !e.target.disabled) {
+                selectData(e.target.closest('.producto-riel'));
+            }
+        });
+
+        // Productos de ejemplo (fallback sin servidor)
 
 
+        try {
+            const res  = await fetch('http://localhost:3000/productos');
+            const data = await res.json();
+            // Mezclar aleatoriamente (Fisher-Yates)
+            allProducts = data
+                .filter(p => p.disponible)
+                .sort(() => Math.random() - 0.5);
+        } catch {
+            allProducts = FALLBACK.sort(() => Math.random() - 0.5);
+        }
+
+        renderCards(allProducts);
+        slideTo(0);
+        startAuto();
+
+        // Recalcular al redimensionar
+        window.addEventListener('resize', () => slideTo(currentIndex));
+    })();
+    </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
