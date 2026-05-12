@@ -61,13 +61,13 @@
                                         </tr>
                                     </thead>
                                     <tbody id="contentProducts">
-                                        <tr>
+                                        <!--<tr>
                                             <td><img src="assets/img/products/product-01.jpg" alt="Producto"></td>
                                             <td>Lorem ipsum dolor sit.</td>
                                             <td>$15</td>
                                             <td><input type="number" min="1"></td>
                                             <td><button type="button">X</button></td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -77,9 +77,11 @@
                                         </tr>
                                         <tr>
                                             <td colspan="5">
-                                                <button type="button" id="emptyCart">Vaciar Carrito</button>
+                                                <button onclick="exportCartToExcel()" id="Enviar-ca">Enviar a WhatsApp</button>
+
+
                                             </td>
-                                        </tr>
+                                        </tr> 
                                     </tfoot>
                                 </table>
                             </div>
@@ -94,34 +96,34 @@
         </div>
     </header>
 
- <!-- Modal pedido WhatsApp -->
-    <div id="clientModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Completar Pedido</h3>
-            <form id="clientForm">
-                <div class="form-group">
-                    <label for="clientName">Nombre Completo*</label>
-                    <input type="text" id="clientName" required>
-                </div>
-                <div class="form-group">
-                    <label for="clientPhone">Teléfono*</label>
-                    <input type="tel" id="clientPhone" required>
-                </div>
-                <div class="form-group">
-                    <label for="clientAddress">Dirección de envío</label>
-                    <input type="text" id="clientAddress">
-                </div>
-                <div class="form-group">
-                    <label for="clientNotes">Notas adicionales</label>
-                    <textarea id="clientNotes" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn-submit">
-                    <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
-                </button>
-            </form>
-        </div>
-    </div>
+
+<div id="clientModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3>Completar Pedido</h3>
+    <form id="clientForm">
+      <div class="form-group">
+        <label for="clientName">Nombre Completo*</label>
+        <input type="text" id="clientName" required>
+      </div>
+      <div class="form-group">
+        <label for="clientPhone">Teléfono*</label>
+        <input type="tel" id="clientPhone" required>
+      </div>
+      <div class="form-group">
+        <label for="clientAddress">Dirección de envío</label>
+        <input type="text" id="clientAddress">
+      </div>
+      <div class="form-group">
+        <label for="clientNotes">Notas adicionales</label>
+        <textarea id="clientNotes" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">
+        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
 
     <!-- Hero Banner -->
     <section class="hero">

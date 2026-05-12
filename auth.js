@@ -52,7 +52,19 @@ async function register(){
   const password =
     document.getElementById('password').value;
 
-  const { data, error } =
+  localStorage.setItem(
+    'perfilTemporal',
+
+    JSON.stringify({
+
+      nombre,
+      telefono,
+      direccion
+
+    })
+  );
+
+  const { error } =
     await supabaseClient.auth.signUp({
 
       email,
@@ -70,37 +82,52 @@ async function register(){
     return;
   }
 
+  mostrarToast(
+    'Cuenta creada. Revisa tu correo para verificarla'
+  );
+
+
+  const perfilTemporal =
+  localStorage.getItem(
+    'perfilTemporal'
+  );
+
+if(perfilTemporal){
+
+  const perfil =
+    JSON.parse(perfilTemporal);
+
   const userId =
     data.user.id;
 
-  const { error: perfilError } =
+  const { data: perfilExistente } =
+    await supabaseClient
+      .from('perfiles')
+      .select('*')
+      .eq('id', userId)
+      .single();
+
+  if(!perfilExistente){
+
     await supabaseClient
       .from('perfiles')
       .insert([{
 
         id:userId,
 
-        nombre:nombre,
+        nombre:perfil.nombre,
 
-        telefono:telefono,
+        telefono:perfil.telefono,
 
-        direccion:direccion
+        direccion:perfil.direccion
 
       }]);
-
-  if(perfilError){
-
-    mostrarToast(
-      perfilError.message,
-      'error'
-    );
-
-    return;
   }
 
-  mostrarToast(
-  'Cuenta creada. Revisa tu correo para verificar la cuenta'
-);
+  localStorage.removeItem(
+    'perfilTemporal'
+  );
+}
 }
 
 async function verificarSesion(){
@@ -234,7 +261,7 @@ async function recuperarPassword(){
       email,
       {
         redirectTo:
-          'https://catmotorsgarcia.lat/reset-password.html'
+          'https://catmotorgarcias.vercel.app/reset-password.html'
       }
     );
 
