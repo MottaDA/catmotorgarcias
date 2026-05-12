@@ -3,29 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ayuda - Cat Motor Garcias">
+    <meta name="description" content="Distribuidora de Lujos y Repuestos para motos">
+    <meta name="keywords" content="motos, repuestos, accesorios, lujos para moto, cascos, aceite mobil, kit de arrastre, Cat Motor Garcias">
+    <meta name="author" content="Cat Motor Garcias">
+    <link rel="icon" type="image/png" href="Imagenes/Logo.png">
     <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
-    <title>Cat Motor Garcias - Ayuda</title>
+    <title>Cat Motor Garcias</title>
     <link rel="stylesheet" href="styleprueba.css">
+     
 </head>
 <body>
-
     <header>
         <div class="encabezado">
             <div class="menu-container">
                 <div class="logo-container">
-                    <img class="logo1" src="imagenes/Logo.png" alt="Cat Motor Garcias Logo">
+                    <img class="logo1" src="Imagenes/Logo.png" alt="Cat Motor Garcias Logo">
                 </div>
-
+                
                 <nav class="main-nav">
                     <ul class="nav-list">
-                        <li><a href="Index.html">Inicio</a></li>
+                        <li><a href="index.html">Inicio</a></li>
                         <li><a href="Productos.html">Productos</a></li>
                         <li><a href="Otras.html">Otras</a></li>
-                        <li><a href="ayuda.html" class="active">Ayuda</a></li>
+                        <li><a href="ayuda.html">Ayuda</a></li>
+                        <li id="auth-link"></li>
+                        
+
                     </ul>
                 </nav>
-
+                
                 <div class="search-cart-container">
                     <div class="search-container">
                         <form action="" method="GET">
@@ -33,13 +39,13 @@
                             <input type="text" name="q" placeholder="Buscar..." required autocomplete="off">
                         </form>
                     </div>
-
+                    
                     <div class="btn-cart">
                         <button type="button" aria-label="Carrito de compras">
                             <i class="fa-solid fa-cart-shopping icon-cart"></i>
                             <span id="cartCount">0</span>
                         </button>
-
+                        
                         <div class="cart">
                             <div class="cart-responsive">
                                 <table>
@@ -52,7 +58,15 @@
                                             <th>Acción</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="contentProducts"></tbody>
+                                    <tbody id="contentProducts">
+                                        <tr>
+                                            <td><img src="assets/img/products/product-01.jpg" alt="Producto"></td>
+                                            <td>Lorem ipsum dolor sit.</td>
+                                            <td>$15</td>
+                                            <td><input type="number" min="1"></td>
+                                            <td><button type="button">X</button></td>
+                                        </tr>
+                                    </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="5" class="total">
@@ -61,7 +75,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="5">
-                                                <button onclick="exportCartToExcel()" id="Enviar-ca">Exportar a Excel</button>
+                                                <button type="button" id="emptyCart">Vaciar Carrito</button>
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -70,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <button class="mobile-menu-toggle" aria-label="Menú móvil">
                     <i class="fas fa-bars"></i>
                 </button>
