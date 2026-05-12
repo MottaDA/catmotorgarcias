@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ayuda - Cat Motor Garcias">
+    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
+    <title>Cat Motor Garcias - Ayuda</title>
+    <link rel="stylesheet" href="styleprueba.css">
+</head>
+<body>
+
+    <header>
+        <div class="encabezado">
+            <div class="menu-container">
+                <div class="logo-container">
+                    <img class="logo1" src="imagenes/Logo.png" alt="Cat Motor Garcias Logo">
+                </div>
+
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="Index.html">Inicio</a></li>
+                        <li><a href="Productos.html">Productos</a></li>
+                        <li><a href="Otras.html">Otras</a></li>
+                        <li><a href="ayuda.html" class="active">Ayuda</a></li>
+                    </ul>
+                </nav>
+
+                <div class="search-cart-container">
+                    <div class="search-container">
+                        <form action="" method="GET">
+                            <i class="fa fa-magnifying-glass"></i>
+                            <input type="text" name="q" placeholder="Buscar..." required autocomplete="off">
+                        </form>
+                    </div>
+
+                    <div class="btn-cart">
+                        <button type="button" aria-label="Carrito de compras">
+                            <i class="fa-solid fa-cart-shopping icon-cart"></i>
+                            <span id="cartCount">0</span>
+                        </button>
+
+                        <div class="cart">
+                            <div class="cart-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Descripción</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="contentProducts"></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="total">
+                                                <h4 class="heading-total">Total: <span id="total"></span></h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <button onclick="exportCartToExcel()" id="Enviar-ca">Exportar a Excel</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="mobile-menu-toggle" aria-label="Menú móvil">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal pedido WhatsApp -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Completar Pedido</h3>
+            <form id="clientForm">
+                <div class="form-group">
+                    <label for="clientName">Nombre Completo*</label>
+                    <input type="text" id="clientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">Teléfono*</label>
+                    <input type="tel" id="clientPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientAddress">Dirección de envío</label>
+                    <input type="text" id="clientAddress">
+                </div>
+                <div class="form-group">
+                    <label for="clientNotes">Notas adicionales</label>
+                    <textarea id="clientNotes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">
+                    <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- Banner -->
+        <section class="hero">
+            <h1>Centro de Ayuda</h1>
+            <p>Encuentra respuestas rápidas a tus preguntas</p>
+        </section>
+
+        <!-- Preguntas frecuentes -->
+        <section class="ayuda-seccion">
+            <h2>Preguntas Frecuentes</h2>
+
+            <div class="faq-lista">
+
+                <details class="faq-item">
+                    <summary>¿Cómo hago un pedido?</summary>
+                    <p>Navega a la sección <a href="Productos.html">Productos</a>, agrega los artículos que quieras al carrito y haz clic en <strong>Exportar a Excel</strong>. Luego completa tus datos y el pedido se enviará directamente por WhatsApp.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Hacen envíos a domicilio?</summary>
+                    <p>Sí, realizamos envíos dentro de la ciudad y a municipios cercanos. El costo y tiempo de entrega se coordina directamente con el asesor por WhatsApp al momento de confirmar el pedido.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Cuáles son los métodos de pago?</summary>
+                    <p>Aceptamos efectivo, transferencia bancaria y pagos por Nequi o Daviplata. El asesor te indicará los datos al confirmar tu pedido.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Los productos tienen garantía?</summary>
+                    <p>Sí. Todos nuestros productos cuentan con garantía del fabricante. Si tienes algún problema con un producto, contáctanos por WhatsApp con tu número de pedido y la descripción del problema.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Puedo comprar al por mayor?</summary>
+                    <p>¡Claro que sí! Contamos con precios especiales para distribuidores y compras al por mayor. Escríbenos directamente para cotizar.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Qué hago si un producto no está disponible?</summary>
+                    <p>Puedes escribirnos por WhatsApp preguntando por el producto. En muchos casos podemos conseguirlo por pedido especial en pocos días.</p>
+                </details>
+
+            </div>
+        </section>
+
+        <!-- Contacto rápido -->
+        <section class="ayuda-contacto">
+            <h2>¿Necesitas más ayuda?</h2>
+            <p>Nuestro equipo está listo para atenderte</p>
+            <div class="contacto-cards">
+
+                <div class="contacto-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Atención rápida de lunes a sábado</p>
+                    <a href="https://wa.me/573202898094" target="_blank" class="btn-contacto">Escribir ahora</a>
+                </div>
+
+                <div class="contacto-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Visítanos</h3>
+                    <p>Encuéntranos en nuestra tienda física</p>
+                    <a href="#" class="btn-contacto">Ver ubicación</a>
+                </div>
+
+                <div class="contacto-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Horario</h3>
+                    <p>Lun – Sáb: 8:00 am – 6:00 pm</p>
+                    <span class="btn-contacto sin-link">Dom: Cerrado</span>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Cat Motor Garcias</h4>
+                <ul>
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Comprar</h4>
+                <ul>
+                    <li><a href="#">Cómo comprar</a></li>
+                    <li><a href="#">Ventas al por Mayor</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Problemas</a></li>
+                    <li><a href="#">Garantias</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>No ves algo?</h4>
+                <ul>
+                    <li><a href="#">Pregunta</a></li>
+                    <li><a href="#">Lorem</a></li>
+                    <li><a href="#">Lorem</a></li>
+                </ul>
+            </div>
+            <div class="footer-column social2">
+                <h4>Síguenos</h4>
+                <div class="social2-icons">
+                    <a href="#">FB</a>
+                    <a href="#">IG</a>
+                    <a href="#">TW</a>
+                    <a href="#">DC</a>
+                </div>
+            </div>
+            <div class="footer-column apps">
+                <h4>Otras</h4>
+                <img src="googleplay.png" alt="Google Play">
+                <img src="appstore.png" alt="App Store">
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
