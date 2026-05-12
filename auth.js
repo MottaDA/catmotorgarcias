@@ -162,7 +162,7 @@ async function recuperarPassword(){
       email,
       {
         redirectTo:
-          'reset-password.html'
+          'https://catmotorgarcias.vercel.app/reset-password.html'
       }
     );
 
