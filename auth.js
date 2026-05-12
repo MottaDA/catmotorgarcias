@@ -8,9 +8,11 @@ const supabaseClient = supabase.createClient(
 
 async function login(){
 
-  const email = document.getElementById('email').value;
+  const email =
+    document.getElementById('email').value;
 
-  const password = document.getElementById('password').value;
+  const password =
+    document.getElementById('password').value;
 
   const { data, error } =
     await supabaseClient.auth.signInWithPassword({
@@ -23,16 +25,79 @@ async function login(){
   if(error){
 
     mostrarToast(
-  traducirError(error.message),
-  'error'
-);
+      traducirError(error.message),
+      'error'
+    );
 
     return;
   }
 
-  mostrarToast('Inicio de sesión exitoso');
+  // AQUI VA EL BLOQUE DE PERFIL
 
-  window.location.href = 'index.html';
+  const perfilTemporal =
+    localStorage.getItem(
+      'perfilTemporal'
+    );
+
+  if(perfilTemporal){
+
+    const perfil =
+      JSON.parse(perfilTemporal);
+
+    const userId =
+      data.user.id;
+
+    const { data: perfiles } =
+      await supabaseClient
+        .from('perfiles')
+        .select('*')
+        .eq('id', userId);
+
+    if(!perfiles || perfiles.length === 0){
+
+      const { error: insertError } =
+        await supabaseClient
+          .from('perfiles')
+          .insert([{
+
+            id:userId,
+
+            nombre:perfil.nombre,
+
+            telefono:perfil.telefono,
+
+            direccion:perfil.direccion
+
+          }]);
+
+      if(insertError){
+
+        console.log(insertError);
+
+        mostrarToast(
+          'Error guardando perfil',
+          'error'
+        );
+
+        return;
+      }
+    }
+
+    localStorage.removeItem(
+      'perfilTemporal'
+    );
+  }
+
+  mostrarToast(
+    'Inicio de sesión exitoso'
+  );
+
+  setTimeout(() => {
+
+    window.location.href =
+      'index.html';
+
+  }, 1500);
 }
 
 async function register(){
@@ -85,49 +150,6 @@ async function register(){
   mostrarToast(
     'Cuenta creada. Revisa tu correo para verificarla'
   );
-
-
-  const perfilTemporal =
-  localStorage.getItem(
-    'perfilTemporal'
-  );
-
-if(perfilTemporal){
-
-  const perfil =
-    JSON.parse(perfilTemporal);
-
-  const userId =
-    data.user.id;
-
-  const { data: perfilExistente } =
-    await supabaseClient
-      .from('perfiles')
-      .select('*')
-      .eq('id', userId)
-      .single();
-
-  if(!perfilExistente){
-
-    await supabaseClient
-      .from('perfiles')
-      .insert([{
-
-        id:userId,
-
-        nombre:perfil.nombre,
-
-        telefono:perfil.telefono,
-
-        direccion:perfil.direccion
-
-      }]);
-  }
-
-  localStorage.removeItem(
-    'perfilTemporal'
-  );
-}
 }
 
 async function verificarSesion(){
