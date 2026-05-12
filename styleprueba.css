@@ -1011,3 +1011,81 @@ s
     max-width: 320px;
   }
 }
+/* ============================================================
+   Footer — Redes sociales y tiendas
+   ============================================================ */
+ 
+/* Iconos de redes sociales */
+.social2-icons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+ 
+.social2-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: background-color 0.25s, color 0.25s, transform 0.2s;
+}
+ 
+.social2-icons a:hover { transform: translateY(-3px); }
+ 
+.social2-icons a[aria-label="Facebook"]:hover  { background-color: #1877f2; color: #fff; }
+.social2-icons a[aria-label="Instagram"]:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); color: #fff; }
+.social2-icons a[aria-label="Twitter / X"]:hover { background-color: #000; color: #fff; }
+.social2-icons a[aria-label="Discord"]:hover   { background-color: #5865f2; color: #fff; }
+ 
+/* Badges de tiendas */
+.footer-column.apps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+ 
+.store-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.2s, transform 0.2s;
+  min-width: 150px;
+}
+ 
+.store-badge:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+ 
+.store-badge i {
+  font-size: 1.6rem;
+  color: #fff;
+}
+ 
+.store-badge span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+ 
+.store-badge span small {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #bbb;
+}
+ 
