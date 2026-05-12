@@ -15,6 +15,14 @@ body {
 .encabezado {
     position: relative;
     width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+    display: block;
 }
 
 .menu-container {
@@ -301,10 +309,8 @@ body {
 
 
 main {
-
-  margin-top: 23px;
+  margin-top: 0;
   padding-bottom: 30px;
-
 }
 
 
