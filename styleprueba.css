@@ -527,11 +527,32 @@ s
 }
 /* Hero */
 
+/* Hero */
+
 .hero {
-    background: url('Imagenes/banner2.webp') no-repeat center center/cover;
-    padding: 80px 20px;
+    background: url('Imagenes/banner2.webp') no-repeat center center / cover;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
     text-align: center;
     color: white;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 280px;
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 220px;
+        padding: 30px 12px;
+    }
 }
 
 .hero h1 {
@@ -560,7 +581,6 @@ s
 .hero .btn:hover {
     background-color: #d62828;
 }
-
 /* Productos destacados index */
 
 .productos-destacados {
