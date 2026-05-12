@@ -154,3 +154,28 @@ button:hover{
 
   background:rgba(255,255,255,0.1);
 }
+
+.switch-auth{
+
+  color:white;
+
+  text-align:center;
+
+  margin-top:10px;
+
+  font-size:14px;
+}
+
+.switch-auth a{
+
+  color:#ff3c00;
+
+  text-decoration:none;
+
+  font-weight:bold;
+}
+
+.switch-auth a:hover{
+
+  text-decoration:underline;
+}

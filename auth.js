@@ -37,9 +37,20 @@ async function login(){
 
 async function register(){
 
-  const email = document.getElementById('email').value;
+  const nombre =
+    document.getElementById('nombre').value;
 
-  const password = document.getElementById('password').value;
+  const telefono =
+    document.getElementById('telefono').value;
+
+  const direccion =
+    document.getElementById('direccion').value;
+
+  const email =
+    document.getElementById('email').value;
+
+  const password =
+    document.getElementById('password').value;
 
   const { data, error } =
     await supabaseClient.auth.signUp({
@@ -51,12 +62,45 @@ async function register(){
 
   if(error){
 
-    mostrarToast(error.message, 'error');
+    mostrarToast(
+      traducirError(error.message),
+      'error'
+    );
 
     return;
   }
 
-  mostrarToast('Revisa tu correo para confirmar la cuenta');
+  const userId =
+    data.user.id;
+
+  const { error: perfilError } =
+    await supabaseClient
+      .from('perfiles')
+      .insert([{
+
+        id:userId,
+
+        nombre:nombre,
+
+        telefono:telefono,
+
+        direccion:direccion
+
+      }]);
+
+  if(perfilError){
+
+    mostrarToast(
+      perfilError.message,
+      'error'
+    );
+
+    return;
+  }
+
+  mostrarToast(
+  'Cuenta creada. Revisa tu correo para verificar la cuenta'
+);
 }
 
 async function verificarSesion(){
@@ -82,26 +126,54 @@ async function actualizarBotonAuth(){
   const { data } =
     await supabaseClient.auth.getSession();
 
-  const authLink =
-    document.getElementById('auth-link');
+  const loginLink =
+    document.getElementById('login-link');
 
-  if(!authLink) return;
+  const registerLink =
+    document.getElementById('register-link');
+
+  const logoutLink =
+    document.getElementById('logout-link');
 
   if(data.session){
 
-    authLink.innerHTML = `
-      <a href="#" onclick="logout()">
-        Cerrar Sesión
-      </a>
-    `;
+    if(loginLink)
+      loginLink.innerHTML = '';
+
+    if(registerLink)
+      registerLink.innerHTML = '';
+
+    if(logoutLink){
+
+      logoutLink.innerHTML = `
+        <a href="#" onclick="logout()">
+          Cerrar Sesión
+        </a>
+      `;
+    }
 
   }else{
 
-    authLink.innerHTML = `
-      <a href="login.html">
-        Iniciar Sesión
-      </a>
-    `;
+    if(loginLink){
+
+      loginLink.innerHTML = `
+        <a href="login.html">
+          Iniciar Sesión
+        </a>
+      `;
+    }
+
+    if(registerLink){
+
+      registerLink.innerHTML = `
+        <a href="register.html">
+          Registrarse
+        </a>
+      `;
+    }
+
+    if(logoutLink)
+      logoutLink.innerHTML = '';
   }
 }
 

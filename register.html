@@ -15,40 +15,33 @@
     <div class="login-container">
 
     <img src="Imagenes/Logo.png" class="logo">
-    <h1>Iniciar sesión</h1>
+    <h1>Crear Cuenta</h1>
 
-    <input
-      type="email"
-      id="email"
-      placeholder="Correo"
-    >
+    <input type="text" id="nombre" placeholder="Nombre completo">
 
-    <input
-      type="password"
-      id="password"
-      placeholder="Contraseña"
-    >
+    <input type="text" id="telefono" placeholder="Teléfono">
 
-    <button onclick="login()">
-      Ingresar
+    <input type="text" id="direccion" placeholder="Dirección">
+
+    <input type="email" id="email" placeholder="Correo">
+
+    <input type="password" id="password" placeholder="Contraseña">
+
+
+    <button onclick="register()">
+      Registrarse
     </button>
 
     <p class="switch-auth">
 
-  ¿No tienes cuenta?
+  ¿Ya tienes cuenta?
 
-  <a href="register.html">
-    Regístrate
+  <a href="login.html">
+    Inicia sesión
   </a>
 
 </p>
 
-    <button
-  class="forgot-btn"
-  onclick="recuperarPassword()"
->
-  Recuperar contraseña
-</button>
 
   </div>
 
