@@ -78,12 +78,26 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5">
-                                                <button onclick="exportCartToExcel()" id="Enviar-ca">Enviar a WhatsApp</button>
 
+    <td colspan="5">
 
-                                            </td>
-                                        </tr> 
+        <div id="pedido-container">
+
+            <button
+                onclick="exportCartToExcel()"
+                id="Enviar-ca">
+
+                Enviar a WhatsApp
+
+            </button>
+
+        </div>
+
+        <div id="login-required"></div>
+
+    </td>
+
+</tr>
                                     </tfoot>
                                 </table>
                             </div>
@@ -199,5 +213,10 @@
 <script>
   actualizarBotonAuth();
   
+</script>
+<script>
+
+  verificarAccesoPedido();
+
 </script>
 </html>

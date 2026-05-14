@@ -32,59 +32,59 @@ async function login(){
     return;
   }
 
-  // AQUI VA EL BLOQUE DE PERFIL
-
-  const perfilTemporal =
+  const datosRegistro =
     localStorage.getItem(
-      'perfilTemporal'
+      'datosRegistro'
     );
 
-  if(perfilTemporal){
+  if(datosRegistro){
 
-    const perfil =
-      JSON.parse(perfilTemporal);
+    const datos =
+      JSON.parse(datosRegistro);
 
     const userId =
       data.user.id;
 
-    const { data: perfiles } =
+    const { data: perfilExistente } =
       await supabaseClient
         .from('perfiles')
         .select('*')
         .eq('id', userId);
 
-    if(!perfiles || perfiles.length === 0){
+    if(!perfilExistente ||
+       perfilExistente.length === 0){
 
-      const { error: insertError } =
-        await supabaseClient
-          .from('perfiles')
-          .insert([{
+      const { error: perfilError } =
+  await supabaseClient
+    .from('perfiles')
+    .insert([{
 
-            id:userId,
+      id:userId,
 
-            nombre:perfil.nombre,
+      nombre:datos.nombre,
 
-            telefono:perfil.telefono,
+      telefono:datos.telefono,
 
-            direccion:perfil.direccion
+      direccion:datos.direccion
 
-          }]);
+    }]);
 
-      if(insertError){
+console.log('Intentando guardar perfil');
 
-        console.log(insertError);
+console.log(datos);
 
-        mostrarToast(
-          'Error guardando perfil',
-          'error'
-        );
+console.log(userId);
 
-        return;
+console.log(perfilError);
+
+      if(perfilError){
+
+        console.log(perfilError);
       }
     }
 
     localStorage.removeItem(
-      'perfilTemporal'
+      'datosRegistro'
     );
   }
 
@@ -98,58 +98,6 @@ async function login(){
       'index.html';
 
   }, 1500);
-}
-
-async function register(){
-
-  const nombre =
-    document.getElementById('nombre').value;
-
-  const telefono =
-    document.getElementById('telefono').value;
-
-  const direccion =
-    document.getElementById('direccion').value;
-
-  const email =
-    document.getElementById('email').value;
-
-  const password =
-    document.getElementById('password').value;
-
-  localStorage.setItem(
-    'perfilTemporal',
-
-    JSON.stringify({
-
-      nombre,
-      telefono,
-      direccion
-
-    })
-  );
-
-  const { error } =
-    await supabaseClient.auth.signUp({
-
-      email,
-      password
-
-    });
-
-  if(error){
-
-    mostrarToast(
-      traducirError(error.message),
-      'error'
-    );
-
-    return;
-  }
-
-  mostrarToast(
-    'Cuenta creada. Revisa tu correo para verificarla'
-  );
 }
 
 async function verificarSesion(){
@@ -283,7 +231,7 @@ async function recuperarPassword(){
       email,
       {
         redirectTo:
-          'https://catmotorgarcias.vercel.app/reset-password.html'
+          'https://catmotorsgarcia.lat/reset-password.html'
       }
     );
 
@@ -369,4 +317,56 @@ async function actualizarPassword(){
       'login.html';
 
   }, 2000);
+}
+
+async function verificarAccesoPedido(){
+
+  const { data } =
+    await supabaseClient.auth.getSession();
+
+  const pedidoContainer =
+    document.getElementById(
+      'pedido-container'
+    );
+
+  const loginRequired =
+    document.getElementById(
+      'login-required'
+    );
+
+  if(!pedidoContainer ||
+     !loginRequired)
+    return;
+
+  if(data.session){
+
+    pedidoContainer.style.display =
+      'block';
+
+    loginRequired.innerHTML = '';
+
+  }else{
+
+    pedidoContainer.style.display =
+      'none';
+
+    loginRequired.innerHTML = `
+
+      <div class="login-warning">
+
+        <p>
+          Debes iniciar sesión para hacer un pedido
+        </p>
+
+        <a href="login.html">
+          Iniciar sesión
+        </a>
+
+        <a href="register.html">
+          Registrarse
+        </a>
+
+      </div>
+    `;
+  }
 }
