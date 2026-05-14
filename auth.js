@@ -6,6 +6,7 @@ const supabaseClient = supabase.createClient(
   SUPABASE_ANON_KEY
 );
 
+
 async function login(){
 
   const email =
