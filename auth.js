@@ -70,13 +70,6 @@ async function login(){
 
     }]);
 
-console.log('Intentando guardar perfil');
-
-console.log(datos);
-
-console.log(userId);
-
-console.log(perfilError);
 
       if(perfilError){
 
