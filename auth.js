@@ -6,6 +6,91 @@ const supabaseClient = supabase.createClient(
   SUPABASE_ANON_KEY
 );
 
+async function login(){
+
+  const email =
+    document.getElementById('email').value;
+
+  const password =
+    document.getElementById('password').value;
+
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+
+      email,
+      password
+
+    });
+
+  if(error){
+
+    mostrarToast(
+      traducirError(error.message),
+      'error'
+    );
+
+    return;
+  }
+
+  const datosRegistro =
+    localStorage.getItem(
+      'datosRegistro'
+    );
+
+  if(datosRegistro){
+
+    const datos =
+      JSON.parse(datosRegistro);
+
+    const userId =
+      data.user.id;
+
+    const { data: perfilExistente } =
+      await supabaseClient
+        .from('perfiles')
+        .select('*')
+        .eq('id', userId);
+
+    if(!perfilExistente ||
+       perfilExistente.length === 0){
+
+      const { error: perfilError } =
+        await supabaseClient
+          .from('perfiles')
+          .insert([{
+
+            id:userId,
+
+            nombre:datos.nombre,
+
+            telefono:datos.telefono,
+
+            direccion:datos.direccion
+
+          }]);
+
+      if(perfilError){
+
+        console.log(perfilError);
+      }
+    }
+
+    localStorage.removeItem(
+      'datosRegistro'
+    );
+  }
+
+  mostrarToast(
+    'Inicio de sesión exitoso'
+  );
+
+  setTimeout(() => {
+
+    window.location.href =
+      'index.html';
+
+  }, 1500);
+}
 
 async function login(){
 
@@ -56,20 +141,19 @@ async function login(){
        perfilExistente.length === 0){
 
       const { error: perfilError } =
-  await supabaseClient
-    .from('perfiles')
-    .insert([{
+        await supabaseClient
+          .from('perfiles')
+          .insert([{
 
-      id:userId,
+            id:userId,
 
-      nombre:datos.nombre,
+            nombre:datos.nombre,
 
-      telefono:datos.telefono,
+            telefono:datos.telefono,
 
-      direccion:datos.direccion
+            direccion:datos.direccion
 
-    }]);
-
+          }]);
 
       if(perfilError){
 
