@@ -248,6 +248,28 @@
   verificarAccesoPedido();
 
 </script>
- 
+ <script>
+
+  const hash =
+    window.location.hash;
+
+  if(hash.includes('access_token') &&
+     hash.includes('type=signup')){
+
+    supabaseClient.auth.signOut();
+
+    mostrarToast(
+      'Correo verificado. Ahora inicia sesión'
+    );
+
+    setTimeout(() => {
+
+      window.location.href =
+        'login.html';
+
+    }, 2000);
+  }
+
+</script>
 </body>
 </html>
