@@ -124,13 +124,27 @@ async function register(){
 
   if(error){
 
+  if(
+    error.message.includes(
+      'User already registered'
+    )
+  ){
+
     mostrarToast(
-      traducirError(error.message),
+      'Este correo ya está registrado',
       'error'
     );
 
     return;
   }
+
+  mostrarToast(
+    traducirError(error.message),
+    'error'
+  );
+
+  return;
+}
 
   localStorage.setItem(
 
