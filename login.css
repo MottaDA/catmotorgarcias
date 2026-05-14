@@ -179,29 +179,3 @@ button:hover{
 
   text-decoration:underline;
 }
-
-.login-warning{
-
-  text-align:center;
-
-  margin-top:20px;
-
-  color:white;
-}
-
-.login-warning a{
-
-  display:inline-block;
-
-  margin:10px;
-
-  padding:10px 15px;
-
-  background:#ff3c00;
-
-  color:white;
-
-  text-decoration:none;
-
-  border-radius:8px;
-}

@@ -69,6 +69,11 @@ async function login(){
 
           }]);
 
+          console.log('Intentando guardar perfil');
+console.log(datos);
+console.log(userId);
+console.log(perfilError);
+
       if(perfilError){
 
         console.log(perfilError);
@@ -92,7 +97,16 @@ async function login(){
   }, 1500);
 }
 
-async function login(){
+async function register(){
+
+  const nombre =
+    document.getElementById('nombre').value;
+
+  const telefono =
+    document.getElementById('telefono').value;
+
+  const direccion =
+    document.getElementById('direccion').value;
 
   const email =
     document.getElementById('email').value;
@@ -101,7 +115,7 @@ async function login(){
     document.getElementById('password').value;
 
   const { data, error } =
-    await supabaseClient.auth.signInWithPassword({
+    await supabaseClient.auth.signUp({
 
       email,
       password
@@ -118,64 +132,22 @@ async function login(){
     return;
   }
 
-  const datosRegistro =
-    localStorage.getItem(
-      'datosRegistro'
-    );
+  localStorage.setItem(
 
-  if(datosRegistro){
+    'datosRegistro',
 
-    const datos =
-      JSON.parse(datosRegistro);
+    JSON.stringify({
 
-    const userId =
-      data.user.id;
+      nombre,
+      telefono,
+      direccion
 
-    const { data: perfilExistente } =
-      await supabaseClient
-        .from('perfiles')
-        .select('*')
-        .eq('id', userId);
-
-    if(!perfilExistente ||
-       perfilExistente.length === 0){
-
-      const { error: perfilError } =
-        await supabaseClient
-          .from('perfiles')
-          .insert([{
-
-            id:userId,
-
-            nombre:datos.nombre,
-
-            telefono:datos.telefono,
-
-            direccion:datos.direccion
-
-          }]);
-
-      if(perfilError){
-
-        console.log(perfilError);
-      }
-    }
-
-    localStorage.removeItem(
-      'datosRegistro'
-    );
-  }
-
-  mostrarToast(
-    'Inicio de sesión exitoso'
+    })
   );
 
-  setTimeout(() => {
-
-    window.location.href =
-      'index.html';
-
-  }, 1500);
+  mostrarToast(
+    'Cuenta creada. Revisa tu correo para verificarla'
+  );
 }
 
 async function verificarSesion(){
@@ -189,12 +161,6 @@ async function verificarSesion(){
   }
 }
 
-async function logout(){
-
-  await supabaseClient.auth.signOut();
-
-  window.location.href = 'login.html';
-}
 
 async function actualizarBotonAuth(){
 
@@ -309,7 +275,7 @@ async function recuperarPassword(){
       email,
       {
         redirectTo:
-          'https://catmotorsgarcia.lat/reset-password.html'
+          'https://catmotorgarcias.vercel.app/reset-password.html'
       }
     );
 
