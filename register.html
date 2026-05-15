@@ -1,57 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Login</title>
+    <!-- ========================================
+                CONFIGURACIÓN BÁSICA
+    ========================================= -->
+    <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="login.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <!-- Estilos -->
+    <link
+        rel="stylesheet"
+        href="login.css">
+
 </head>
 
 <body>
-    
+
+    <!-- ========================================
+                    TOAST
+    ========================================= -->
     <div id="toast"></div>
+
+
+    <!-- ========================================
+                CONTENEDOR LOGIN
+    ========================================= -->
     <div class="login-container">
 
-    <img src="Imagenes/Logo.png" class="logo">
-    <h1>Crear Cuenta</h1>
+        <!-- Logo -->
+        <img
+            src="Imagenes/Logo.png"
+            class="logo">
 
-    <input type="text" id="nombre" placeholder="Nombre completo">
-
-    <input type="text" id="telefono" placeholder="Teléfono">
-
-    <input type="text" id="direccion" placeholder="Dirección">
-
-    <input type="email" id="email" placeholder="Correo">
-
-    <input type="password" id="password" placeholder="Contraseña">
+        <!-- Título -->
+        <h1>Crear Cuenta</h1>
 
 
-    <button onclick="register()">
-      Registrarse
-    </button>
+        <!-- ========================================
+                    FORMULARIO
+        ========================================= -->
 
-    <p class="switch-auth">
+        <input
+            type="text"
+            id="nombre"
+            placeholder="Nombre completo">
 
-  ¿Ya tienes cuenta?
+        <input
+            type="text"
+            id="telefono"
+            placeholder="Teléfono">
 
-  <a href="login.html">
-    Inicia sesión
-  </a>
+        <input
+            type="text"
+            id="direccion"
+            placeholder="Dirección">
 
-</p>
+        <input
+            type="email"
+            id="email"
+            placeholder="Correo">
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Contraseña">
 
 
-  </div>
+        <!-- Botón registro -->
+        <button onclick="register()">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            Registrarse
 
-  <script src="auth.js"></script>
+        </button>
 
-  <script>
-  verificarUsuarioLogueado();
-</script>
+
+        <!-- Cambio de autenticación -->
+        <p class="switch-auth">
+
+            ¿Ya tienes cuenta?
+
+            <a href="login.html">
+
+                Inicia sesión
+
+            </a>
+
+        </p>
+
+    </div>
+
+
+    <!-- ========================================
+                    SCRIPTS
+    ========================================= -->
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Auth -->
+    <script src="auth.js"></script>
+
+    <!-- Verificación usuario -->
+    <script>
+
+        verificarUsuarioLogueado();
+
+    </script>
 
 </body>
+
 </html>

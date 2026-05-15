@@ -2,58 +2,106 @@
 <html lang="en">
 
 <head>
+
+    <!-- Configuración básica -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Distribuidora de Lujos y Repuestos para motos">
-    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
-    <title>Cat Motor Garcias</title>
-    <link rel="stylesheet" href="styleprueba.css">
-    <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
+    <!-- Descripción -->
+    <meta
+        name="description"
+        content="Distribuidora de Lujos y Repuestos para motos">
+
+    <title>Cat Motor Garcias</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="styleprueba.css">
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+
+    <!-- Librería Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 </head>
 
-<body> 
+<body>
+
+    <!-- =========================
+            HEADER
+    ========================== -->
     <header>
+
         <div class="encabezado">
+
             <div class="menu-container">
+
+                <!-- Logo -->
                 <div class="logo-container">
                     <img class="logo1" src="Imagenes/Logo.png" alt="Cat Motor Garcias Logo">
                 </div>
-                
+
+                <!-- Navegación principal -->
                 <nav class="main-nav">
+
                     <ul class="nav-list">
+
                         <li><a href="index.html">Inicio</a></li>
                         <li><a href="Productos.html">Productos</a></li>
                         <li><a href="Otras.html">Otras</a></li>
                         <li><a href="ayuda.html">Ayuda</a></li>
+
+                        <!-- Links dinámicos -->
                         <li id="login-link"></li>
                         <li id="register-link"></li>
                         <li id="logout-link"></li>
-                        
 
                     </ul>
+
                 </nav>
-                
+
+                <!-- Buscador y carrito -->
                 <div class="search-cart-container">
+
+                    <!-- Buscador -->
                     <div class="search-container">
+
                         <form action="" method="GET">
+
                             <i class="fa fa-magnifying-glass"></i>
-                            <input type="text" name="q" placeholder="Buscar..." required autocomplete="off">
+
+                            <input
+                                type="text"
+                                name="q"
+                                placeholder="Buscar..."
+                                required
+                                autocomplete="off">
+
                         </form>
+
                     </div>
-                    
+
+                    <!-- Carrito -->
                     <div class="btn-cart">
+
                         <button type="button" aria-label="Carrito de compras">
+
                             <i class="fa-solid fa-cart-shopping icon-cart"></i>
+
                             <span id="cartCount">0</span>
+
                         </button>
-                        
+
+                        <!-- Contenedor del carrito -->
                         <div class="cart">
+
                             <div class="cart-responsive">
+
                                 <table>
+
                                     <thead>
+
                                         <tr>
                                             <th>Imagen</th>
                                             <th>Descripción</th>
@@ -61,165 +109,387 @@
                                             <th>Cantidad</th>
                                             <th>Acción</th>
                                         </tr>
+
                                     </thead>
+
                                     <tbody id="contentProducts">
-                                        <!--<tr>
-                                            <td><img src="assets/img/products/product-01.jpg" alt="Producto"></td>
+
+                                        <!-- Productos dinámicos -->
+                                        <!--
+                                        <tr>
+                                            <td>
+                                                <img src="assets/img/products/product-01.jpg" alt="Producto">
+                                            </td>
+
                                             <td>Lorem ipsum dolor sit.</td>
                                             <td>$15</td>
-                                            <td><input type="number" min="1"></td>
-                                            <td><button type="button">X</button></td>
-                                        </tr> -->
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="5" class="total">
-                                                <h4 class="heading-total">Total: <span id="total"></span></h4>
+
+                                            <td>
+                                                <input type="number" min="1">
+                                            </td>
+
+                                            <td>
+                                                <button type="button">X</button>
                                             </td>
                                         </tr>
+                                        -->
+
+                                    </tbody>
+
+                                    <tfoot>
+
+                                        <!-- Total -->
                                         <tr>
 
-    <td colspan="5">
+                                            <td colspan="5" class="total">
 
-        <div id="pedido-container">
+                                                <h4 class="heading-total">
+                                                    Total: <span id="total"></span>
+                                                </h4>
 
-            <button
-                onclick="exportCartToExcel()"
-                id="Enviar-ca">
+                                            </td>
 
-                Enviar a WhatsApp
+                                        </tr>
 
-            </button>
+                                        <!-- Botón pedido -->
+                                        <tr>
 
-        </div>
+                                            <td colspan="5">
 
-        <div id="login-required"></div>
+                                                <div id="pedido-container">
 
-    </td>
+                                                    <button
+                                                        onclick="exportCartToExcel()"
+                                                        id="Enviar-ca">
 
-</tr> 
+                                                        Enviar a WhatsApp
+
+                                                    </button>
+
+                                                </div>
+
+                                                <div id="login-required"></div>
+
+                                            </td>
+
+                                        </tr>
+
                                     </tfoot>
+
                                 </table>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
-                
+
+                <!-- Menú móvil -->
                 <button class="mobile-menu-toggle" aria-label="Menú móvil">
+
                     <i class="fas fa-bars"></i>
+
                 </button>
+
             </div>
+
         </div>
+
     </header>
 
+    <!-- =========================
+            MODAL CLIENTE
+    ========================== -->
+    <div id="clientModal" class="modal">
 
-<div id="clientModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <h3>Completar Pedido</h3>
-    <form id="clientForm">
-      <div class="form-group">
-        <label for="clientName">Nombre Completo*</label>
-        <input type="text" id="clientName" required>
-      </div>
-      <div class="form-group">
-        <label for="clientPhone">Teléfono*</label>
-        <input type="tel" id="clientPhone" required>
-      </div>
-      <div class="form-group">
-        <label for="clientAddress">Dirección de envío</label>
-        <input type="text" id="clientAddress">
-      </div>
-      <div class="form-group">
-        <label for="clientNotes">Notas adicionales</label>
-        <textarea id="clientNotes" rows="3"></textarea>
-      </div>
-      <button type="submit" class="btn-submit">
-        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
-      </button>
-    </form>
-  </div>
-</div>
+        <div class="modal-content">
 
+            <span class="close-modal">&times;</span>
 
-<main>
-    <section class="contenedor-productos" id="listproducts">
+            <h3>Completar Pedido</h3>
 
-</main>
+            <form id="clientForm">
 
-<script>
-  actualizarBotonAuth();
-  
-</script>
+                <div class="form-group">
 
-<script>
+                    <label for="clientName">Nombre Completo*</label>
 
-  verificarAccesoPedido();
+                    <input type="text" id="clientName" required>
 
-</script>
-</body>    
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h4>Cat Motor Garcias</h4>
-                <ul>
-                    <li><a href="#">Sobre nosotros</a></li>
-                    <li><a href="#">Contáctanos</a></li>
-                    <li><a href="#">Lorem</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Comprar</h4>
-                <ul>
-                    <li><a href="#">Cómo comprar</a></li>
-                    <li><a href="#">Ventas al por Mayor</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Ayuda</h4>
-                <ul>
-                    <li><a href="#">Problemas</a></li>
-                    <li><a href="#">Garantias</a></li>
-                    <li><a href="#">Lorem</a></li>
-                    <li><a href="#">Lorem</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>No ves algo?</h4>
-                <ul>
-                    <li><a href="#">Pregunta</a></li>
-                    <li><a href="#">Lorem</a></li>
-                    <li><a href="#">Lorem</a></li>
-                </ul>
-            </div>
-            <div class="footer-column social2">
-                <h4>Síguenos</h4>
-                <div class="social2-icons">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
-                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
                 </div>
-            </div>
-            <div class="footer-column apps">
-                <h4>Descárganos</h4>
-                <a href="#" class="store-badge" aria-label="Google Play">
-                    <i class="fab fa-google-play"></i>
-                    <span><small>Disponible en</small>Google Play</span>
-                </a>
-                <a href="#" class="store-badge" aria-label="App Store">
-                    <i class="fab fa-apple"></i>
-                    <span><small>Disponible en</small>App Store</span>
-                </a>
-            </div>
+
+                <div class="form-group">
+
+                    <label for="clientPhone">Teléfono*</label>
+
+                    <input type="tel" id="clientPhone" required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="clientAddress">Dirección de envío</label>
+
+                    <input type="text" id="clientAddress">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="clientNotes">Notas adicionales</label>
+
+                    <textarea id="clientNotes" rows="3"></textarea>
+
+                </div>
+
+                <button type="submit" class="btn-submit">
+
+                    <i class="fab fa-whatsapp"></i>
+
+                    Enviar por WhatsApp
+
+                </button>
+
+            </form>
+
         </div>
-    </footer>
+
+    </div>
+
+
+    <!-- ========================================
+                    MAIN
+    ========================================= -->
+    <main>
+
+        <section
+            class="contenedor-productos"
+            id="listproducts">
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================
+                FUNCIONES INICIALES
+    ========================================= -->
+    <script>
+
+        actualizarBotonAuth();
+
+    </script>
+
+    <script>
+
+        verificarAccesoPedido();
+
+    </script>
+
+</body>
+
+
+<!-- ========================================
+                    FOOTER
+========================================= -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Información -->
+        <div class="footer-column">
+
+            <h4>Cat Motor Garcias</h4>
+
+            <ul>
+
+                <li>
+                    <a href="#">Sobre nosotros</a>
+                </li>
+
+                <li>
+                    <a href="#">Contáctanos</a>
+                </li>
+
+                <li>
+                    <a href="#">Lorem</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Comprar -->
+        <div class="footer-column">
+
+            <h4>Comprar</h4>
+
+            <ul>
+
+                <li>
+                    <a href="#">Cómo comprar</a>
+                </li>
+
+                <li>
+                    <a href="#">Ventas al por Mayor</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Ayuda -->
+        <div class="footer-column">
+
+            <h4>Ayuda</h4>
+
+            <ul>
+
+                <li>
+                    <a href="#">Problemas</a>
+                </li>
+
+                <li>
+                    <a href="#">Garantias</a>
+                </li>
+
+                <li>
+                    <a href="#">Lorem</a>
+                </li>
+
+                <li>
+                    <a href="#">Lorem</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Preguntas -->
+        <div class="footer-column">
+
+            <h4>No ves algo?</h4>
+
+            <ul>
+
+                <li>
+                    <a href="#">Pregunta</a>
+                </li>
+
+                <li>
+                    <a href="#">Lorem</a>
+                </li>
+
+                <li>
+                    <a href="#">Lorem</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Redes sociales -->
+        <div class="footer-column social2">
+
+            <h4>Síguenos</h4>
+
+            <div class="social2-icons">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="Twitter / X">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+
+                <a href="#" aria-label="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Apps -->
+        <div class="footer-column apps">
+
+            <h4>Descárganos</h4>
+
+            <a
+                href="#"
+                class="store-badge"
+                aria-label="Google Play">
+
+                <i class="fab fa-google-play"></i>
+
+                <span>
+
+                    <small>Disponible en</small>
+
+                    Google Play
+
+                </span>
+
+            </a>
+
+            <a
+                href="#"
+                class="store-badge"
+                aria-label="App Store">
+
+                <i class="fab fa-apple"></i>
+
+                <span>
+
+                    <small>Disponible en</small>
+
+                    App Store
+
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+    <!-- =========================
+            SCRIPTS
+    ========================== -->
+
+    <!-- Librería Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- Scripts principales -->
     <script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="auth.js"></script>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <!-- Auth -->
+    <script src="auth.js"></script>
+
+    <!-- Funciones iniciales -->
+    <script>
+
+        actualizarBotonAuth();
+
+    </script>
+
+    <script>
+
+        verificarAccesoPedido();
+
+    </script>
 
 </html>

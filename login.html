@@ -1,64 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Login</title>
+    <!-- ========================================
+                CONFIGURACIÓN BÁSICA
+    ========================================= -->
+    <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="login.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <!-- Estilos -->
+    <link
+        rel="stylesheet"
+        href="login.css">
+
 </head>
 
 <body>
-    
+
+    <!-- ========================================
+                    TOAST
+    ========================================= -->
     <div id="toast"></div>
+
+
+    <!-- ========================================
+                CONTENEDOR LOGIN
+    ========================================= -->
     <div class="login-container">
 
-    <img src="Imagenes/Logo.png" class="logo">
-    <h1>Iniciar sesión</h1>
+        <!-- Logo -->
+        <img
+            src="Imagenes/Logo.png"
+            class="logo">
 
-    <input
-      type="email"
-      id="email"
-      placeholder="Correo"
-    >
+        <!-- Título -->
+        <h1>Iniciar sesión</h1>
 
-    <input
-      type="password"
-      id="password"
-      placeholder="Contraseña"
-    >
 
-    <button onclick="login()">
-      Ingresar
-    </button>
+        <!-- ========================================
+                    FORMULARIO
+        ========================================= -->
 
-    <p class="switch-auth">
+        <!-- Correo -->
+        <input
+            type="email"
+            id="email"
+            placeholder="Correo">
 
-  ¿No tienes cuenta?
+        <!-- Contraseña -->
+        <input
+            type="password"
+            id="password"
+            placeholder="Contraseña">
 
-  <a href="register.html">
-    Regístrate
-  </a>
 
-</p>
+        <!-- Botón login -->
+        <button onclick="login()">
 
-    <button
-  class="forgot-btn"
-  onclick="recuperarPassword()"
->
-  Recuperar contraseña
-</button>
+            Ingresar
 
-  </div>
+        </button>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script src="auth.js"></script>
+        <!-- Registro -->
+        <p class="switch-auth">
 
-  <script>
-  verificarUsuarioLogueado();
-</script>
+            ¿No tienes cuenta?
+
+            <a href="register.html">
+
+                Regístrate
+
+            </a>
+
+        </p>
+
+
+        <!-- Recuperar contraseña -->
+        <button
+            class="forgot-btn"
+            onclick="recuperarPassword()">
+
+            Recuperar contraseña
+
+        </button>
+
+    </div>
+
+
+    <!-- ========================================
+                    SCRIPTS
+    ========================================= -->
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Auth -->
+    <script src="auth.js"></script>
+
+    <!-- Verificar usuario -->
+    <script>
+
+        verificarUsuarioLogueado();
+
+    </script>
 
 </body>
+
 </html>

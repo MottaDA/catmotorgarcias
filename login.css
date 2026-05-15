@@ -1,181 +1,248 @@
-body{
-  margin:0;
-  padding:0;
-  font-family:Arial, sans-serif;
-  background:
-    linear-gradient(rgba(0,0,0,0.7),
-    rgba(0,0,0,0.7)),
-    url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7');
+/* ========================================
+                CONFIGURACIÓN GLOBAL
+======================================== */
+body {
 
-  background-size:cover;
-  background-position:center;
+    margin: 0;
+    padding: 0;
 
-  height:100vh;
+    font-family: Arial, sans-serif;
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
+    /* Fondo */
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+        ),
+        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7');
+
+    background-size: cover;
+    background-position: center;
+
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
-.login-container{
 
-  width:350px;
+/* ========================================
+            CONTENEDOR LOGIN
+======================================== */
+.login-container {
 
-  background:rgba(255,255,255,0.1);
+    width: 350px;
 
-  backdrop-filter:blur(10px);
+    background: rgba(255, 255, 255, 0.1);
 
-  border-radius:15px;
+    backdrop-filter: blur(10px);
 
-  padding:40px;
+    border-radius: 15px;
 
-  display:flex;
+    padding: 40px;
 
-  flex-direction:column;
+    display: flex;
+    flex-direction: column;
 
-  gap:15px;
+    gap: 15px;
 
-  box-shadow:0 0 20px rgba(0,0,0,0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
 }
 
-.login-container h1{
 
-  color:white;
+/* ========================================
+                TÍTULO
+======================================== */
+.login-container h1 {
 
-  text-align:center;
+    color: white;
 
-  margin-bottom:10px;
+    text-align: center;
+
+    margin-bottom: 10px;
+
 }
 
-input{
 
-  padding:12px;
+/* ========================================
+                INPUTS
+======================================== */
+input {
 
-  border:none;
+    padding: 12px;
 
-  border-radius:8px;
+    border: none;
 
-  outline:none;
+    border-radius: 8px;
 
-  font-size:16px;
+    outline: none;
+
+    font-size: 16px;
+
 }
 
-button{
 
-  padding:12px;
+/* ========================================
+                BOTONES
+======================================== */
+button {
 
-  border:none;
+    padding: 12px;
 
-  border-radius:8px;
+    border: none;
 
-  background:#ff3c00;
+    border-radius: 8px;
 
-  color:white;
+    background: #ff3c00;
 
-  font-size:16px;
+    color: white;
 
-  cursor:pointer;
+    font-size: 16px;
 
-  transition:0.3s;
+    cursor: pointer;
+
+    transition: 0.3s;
+
 }
 
-button:hover{
+button:hover {
 
-  background:#d63200;
+    background: #d63200;
+
 }
 
-.logo{
-  width:120px;
-  margin:auto;
+
+/* ========================================
+                    LOGO
+======================================== */
+.logo {
+
+    width: 120px;
+
+    margin: auto;
+
 }
 
-#toast{
 
-  position:fixed;
+/* ========================================
+                    TOAST
+======================================== */
+#toast {
 
-  top:20px;
+    position: fixed;
 
-  right:20px;
+    top: 20px;
+    right: 20px;
 
-  background:#222;
+    background: #222;
 
-  color:white;
+    color: white;
 
-  padding:15px 20px;
+    padding: 15px 20px;
 
-  border-radius:10px;
+    border-radius: 10px;
 
-  opacity:0;
+    opacity: 0;
 
-  transform:translateY(-20px);
+    transform: translateY(-20px);
 
-  transition:0.4s;
+    transition: 0.4s;
 
-  z-index:9999;
+    z-index: 9999;
 
-  font-size:14px;
+    font-size: 14px;
 
-  box-shadow:0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
 }
 
-#toast.show{
 
-  opacity:1;
+/* Toast visible */
+#toast.show {
 
-  transform:translateY(0);
+    opacity: 1;
+
+    transform: translateY(0);
+
 }
 
-#toast.success{
-  background:#28a745;
+
+/* Toast éxito */
+#toast.success {
+
+    background: #28a745;
+
 }
 
-#toast.error{
-  background:#dc3545;
+
+/* Toast error */
+#toast.error {
+
+    background: #dc3545;
+
 }
 
-.forgot-btn{
 
-  background:transparent;
+/* ========================================
+        BOTÓN RECUPERAR CONTRASEÑA
+======================================== */
+.forgot-btn {
 
-  border:1px solid rgba(255,255,255,0.4);
+    background: transparent;
 
-  color:white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
 
-  padding:10px;
+    color: white;
 
-  border-radius:8px;
+    padding: 10px;
 
-  transition:0.3s;
+    border-radius: 8px;
 
-  font-size:14px;
+    transition: 0.3s;
+
+    font-size: 14px;
+
 }
 
-.forgot-btn:hover{
+.forgot-btn:hover {
 
-  background:rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
+
 }
 
-.switch-auth{
 
-  color:white;
+/* ========================================
+            CAMBIO DE AUTENTICACIÓN
+======================================== */
+.switch-auth {
 
-  text-align:center;
+    color: white;
 
-  margin-top:10px;
+    text-align: center;
 
-  font-size:14px;
+    margin-top: 10px;
+
+    font-size: 14px;
+
 }
 
-.switch-auth a{
 
-  color:#ff3c00;
+/* Links */
+.switch-auth a {
 
-  text-decoration:none;
+    color: #ff3c00;
 
-  font-weight:bold;
+    text-decoration: none;
+
+    font-weight: bold;
+
 }
 
-.switch-auth a:hover{
+.switch-auth a:hover {
 
-  text-decoration:underline;
+    text-decoration: underline;
+
 }

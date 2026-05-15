@@ -1,57 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
+    <!-- Configuración básica -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
     <meta name="description" content="Distribuidora de Lujos y Repuestos para motos">
-    <meta name="keywords" content="motos, repuestos, accesorios, lujos para moto, cascos, aceite mobil, kit de arrastre, Cat Motor Garcias">
+    <meta name="keywords"
+        content="motos, repuestos, accesorios, lujos para moto, cascos, aceite mobil, kit de arrastre, Cat Motor Garcias">
     <meta name="author" content="Cat Motor Garcias">
+
+    <!-- Icono -->
     <link rel="icon" type="image/png" href="Imagenes/Logo.png">
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
-    <title>Cat Motor Garcias</title>
     <link rel="stylesheet" href="styleprueba.css">
-     
+
+    <title>Cat Motor Garcias</title>
+
 </head>
+
 <body>
+
+    <!-- =========================
+            HEADER
+    ========================== -->
     <header>
+
         <div class="encabezado">
+
             <div class="menu-container">
+
+                <!-- Logo -->
                 <div class="logo-container">
                     <img class="logo1" src="Imagenes/Logo.png" alt="Cat Motor Garcias Logo">
                 </div>
-                
+
+                <!-- Navegación principal -->
                 <nav class="main-nav">
+
                     <ul class="nav-list">
+
                         <li><a href="index.html">Inicio</a></li>
                         <li><a href="Productos.html">Productos</a></li>
                         <li><a href="Otras.html">Otras</a></li>
                         <li><a href="ayuda.html">Ayuda</a></li>
+
+                        <!-- Links dinámicos -->
                         <li id="login-link"></li>
                         <li id="register-link"></li>
                         <li id="logout-link"></li>
-                        
 
                     </ul>
+
                 </nav>
-                
+
+                <!-- Buscador y carrito -->
                 <div class="search-cart-container">
+
+                    <!-- Buscador -->
                     <div class="search-container">
+
                         <form action="" method="GET">
+
                             <i class="fa fa-magnifying-glass"></i>
-                            <input type="text" name="q" placeholder="Buscar..." required autocomplete="off">
+
+                            <input
+                                type="text"
+                                name="q"
+                                placeholder="Buscar..."
+                                required
+                                autocomplete="off">
+
                         </form>
+
                     </div>
-                    
+
+                    <!-- Carrito -->
                     <div class="btn-cart">
+
                         <button type="button" aria-label="Carrito de compras">
+
                             <i class="fa-solid fa-cart-shopping icon-cart"></i>
+
                             <span id="cartCount">0</span>
+
                         </button>
-                        
+
+                        <!-- Contenedor del carrito -->
                         <div class="cart">
+
                             <div class="cart-responsive">
+
                                 <table>
+
                                     <thead>
+
                                         <tr>
                                             <th>Imagen</th>
                                             <th>Descripción</th>
@@ -59,217 +107,369 @@
                                             <th>Cantidad</th>
                                             <th>Acción</th>
                                         </tr>
+
                                     </thead>
+
                                     <tbody id="contentProducts">
-                                        <!--<tr>
-                                            <td><img src="assets/img/products/product-01.jpg" alt="Producto"></td>
+
+                                        <!-- Productos dinámicos -->
+                                        <!--
+                                        <tr>
+                                            <td>
+                                                <img src="assets/img/products/product-01.jpg" alt="Producto">
+                                            </td>
+
                                             <td>Lorem ipsum dolor sit.</td>
                                             <td>$15</td>
-                                            <td><input type="number" min="1"></td>
-                                            <td><button type="button">X</button></td>
-                                        </tr> -->
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="5" class="total">
-                                                <h4 class="heading-total">Total: <span id="total"></span></h4>
+
+                                            <td>
+                                                <input type="number" min="1">
+                                            </td>
+
+                                            <td>
+                                                <button type="button">X</button>
                                             </td>
                                         </tr>
+                                        -->
+
+                                    </tbody>
+
+                                    <tfoot>
+
+                                        <!-- Total -->
                                         <tr>
 
-    <td colspan="5">
+                                            <td colspan="5" class="total">
 
-        <div id="pedido-container">
+                                                <h4 class="heading-total">
+                                                    Total: <span id="total"></span>
+                                                </h4>
 
-            <button
-                onclick="exportCartToExcel()"
-                id="Enviar-ca">
+                                            </td>
 
-                Enviar a WhatsApp
+                                        </tr>
 
+                                        <!-- Botón pedido -->
+                                        <tr>
+
+                                            <td colspan="5">
+
+                                                <div id="pedido-container">
+
+                                                    <button
+                                                        onclick="exportCartToExcel()"
+                                                        id="Enviar-ca">
+
+                                                        Enviar a WhatsApp
+
+                                                    </button>
+
+                                                </div>
+
+                                                <div id="login-required"></div>
+
+                                            </td>
+
+                                        </tr>
+
+                                    </tfoot>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Menú móvil -->
+                <button class="mobile-menu-toggle" aria-label="Menú móvil">
+
+                    <i class="fas fa-bars"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- =========================
+            MODAL CLIENTE
+    ========================== -->
+    <div id="clientModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close-modal">&times;</span>
+
+            <h3>Completar Pedido</h3>
+
+            <form id="clientForm">
+
+                <div class="form-group">
+
+                    <label for="clientName">Nombre Completo*</label>
+
+                    <input type="text" id="clientName" required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="clientPhone">Teléfono*</label>
+
+                    <input type="tel" id="clientPhone" required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="clientAddress">Dirección de envío</label>
+
+                    <input type="text" id="clientAddress">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="clientNotes">Notas adicionales</label>
+
+                    <textarea id="clientNotes" rows="3"></textarea>
+
+                </div>
+
+                <button type="submit" class="btn-submit">
+
+                    <i class="fab fa-whatsapp"></i>
+
+                    Enviar por WhatsApp
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+            HERO BANNER
+    ========================== -->
+    <section class="hero">
+
+        <h1>¡Bienvenido a Cat Motor Garcías!</h1>
+
+        <p>Distribuidora de Lujos y Repuestos para tu Moto</p>
+
+        <a href="Productos.html" class="btn">
+            Ver productos
+        </a>
+
+    </section>
+
+    <!-- =========================
+        RIEL DE PRODUCTOS
+    ========================== -->
+    <section class="riel-section">
+
+        <div class="riel-header">
+
+            <h2>Productos Destacados</h2>
+
+            <a href="Productos.html" class="ver-todos">
+                Ver todos →
+            </a>
+
+        </div>
+
+        <div class="riel-wrapper">
+
+            <button class="riel-btn riel-prev" aria-label="Anterior">
+                &#8249;
+            </button>
+
+            <div class="riel-viewport">
+
+                <div class="riel-track" id="rielTrack">
+
+                    <!-- Skeletons mientras carga -->
+                    <div class="producto-riel skeleton"></div>
+                    <div class="producto-riel skeleton"></div>
+                    <div class="producto-riel skeleton"></div>
+                    <div class="producto-riel skeleton"></div>
+
+                </div>
+
+            </div>
+
+            <button class="riel-btn riel-next" aria-label="Siguiente">
+                &#8250;
             </button>
 
         </div>
 
-        <div id="login-required"></div>
-
-    </td>
-
-</tr> 
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="mobile-menu-toggle" aria-label="Menú móvil">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-
-<div id="clientModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <h3>Completar Pedido</h3>
-    <form id="clientForm">
-      <div class="form-group">
-        <label for="clientName">Nombre Completo*</label>
-        <input type="text" id="clientName" required>
-      </div>
-      <div class="form-group">
-        <label for="clientPhone">Teléfono*</label>
-        <input type="tel" id="clientPhone" required>
-      </div>
-      <div class="form-group">
-        <label for="clientAddress">Dirección de envío</label>
-        <input type="text" id="clientAddress">
-      </div>
-      <div class="form-group">
-        <label for="clientNotes">Notas adicionales</label>
-        <textarea id="clientNotes" rows="3"></textarea>
-      </div>
-      <button type="submit" class="btn-submit">
-        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
-      </button>
-    </form>
-  </div>
-</div>
-
-    <!-- Hero Banner -->
-    <section class="hero">
-        <h1>¡Bienvenido a Cat Motor Garcías!</h1>
-        <p>Distribuidora de Lujos y Repuestos para tu Moto</p>
-        <a href="Productos.html" class="btn">Ver productos</a>
     </section>
 
-    <!-- Riel de productos aleatorios -->
-    <section class="riel-section">
-        <div class="riel-header">
-            <h2>Productos Destacados</h2>
-            <a href="Productos.html" class="ver-todos">Ver todos →</a>
-        </div>
-
-        <div class="riel-wrapper">
-            <button class="riel-btn riel-prev" aria-label="Anterior">&#8249;</button>
-            <div class="riel-viewport">
-                <div class="riel-track" id="rielTrack">
-                    <!-- skeletons mientras carga -->
-                    <div class="producto-riel skeleton"></div>
-                    <div class="producto-riel skeleton"></div>
-                    <div class="producto-riel skeleton"></div>
-                    <div class="producto-riel skeleton"></div>
-                </div>
-            </div>
-            <button class="riel-btn riel-next" aria-label="Siguiente">&#8250;</button>
-        </div>
-    </section>
-
+    <!-- =========================
+            FOOTER
+    ========================== -->
     <footer class="footer">
+
         <div class="footer-container">
+
+            <!-- Información -->
             <div class="footer-column">
+
                 <h4>Cat Motor Garcias</h4>
+
                 <ul>
+
                     <li><a href="#">Sobre nosotros</a></li>
                     <li><a href="#">Contáctanos</a></li>
                     <li><a href="#">Lorem</a></li>
+
                 </ul>
+
             </div>
+
+            <!-- Comprar -->
             <div class="footer-column">
+
                 <h4>Comprar</h4>
+
                 <ul>
+
                     <li><a href="#">Cómo comprar</a></li>
                     <li><a href="#">Ventas al por Mayor</a></li>
+
                 </ul>
+
             </div>
+
+            <!-- Ayuda -->
             <div class="footer-column">
+
                 <h4>Ayuda</h4>
+
                 <ul>
+
                     <li><a href="#">Problemas</a></li>
                     <li><a href="#">Garantias</a></li>
                     <li><a href="#">Lorem</a></li>
                     <li><a href="#">Lorem</a></li>
+
                 </ul>
+
             </div>
+
+            <!-- Preguntas -->
             <div class="footer-column">
+
                 <h4>No ves algo?</h4>
+
                 <ul>
+
                     <li><a href="#">Pregunta</a></li>
                     <li><a href="#">Lorem</a></li>
                     <li><a href="#">Lorem</a></li>
+
                 </ul>
+
             </div>
+
+            <!-- Redes sociales -->
             <div class="footer-column social2">
+
                 <h4>Síguenos</h4>
+
                 <div class="social2-icons">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
-                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="Twitter / X">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+
+                    <a href="#" aria-label="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
+
                 </div>
+
             </div>
+
+            <!-- Apps -->
             <div class="footer-column apps">
+
                 <h4>Descárganos</h4>
+
                 <a href="#" class="store-badge" aria-label="Google Play">
+
                     <i class="fab fa-google-play"></i>
-                    <span><small>Disponible en</small>Google Play</span>
+
+                    <span>
+                        <small>Disponible en</small>
+                        Google Play
+                    </span>
+
                 </a>
+
                 <a href="#" class="store-badge" aria-label="App Store">
+
                     <i class="fab fa-apple"></i>
-                    <span><small>Disponible en</small>App Store</span>
+
+                    <span>
+                        <small>Disponible en</small>
+                        App Store
+                    </span>
+
                 </a>
+
             </div>
+
         </div>
+
     </footer>
 
-    <!-- Scripts al final del body -->
+    <!-- =========================
+            SCRIPTS
+    ========================== -->
+
+    <!-- Librería Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- Scripts principales -->
     <script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="auth.js"></script>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-  actualizarBotonAuth();
-  
-</script>
+    <!-- Auth -->
+    <script src="auth.js"></script>
 
-<script>
+    <!-- Funciones iniciales -->
+    <script>
 
-  verificarAccesoPedido();
+        actualizarBotonAuth();
 
-</script>
+    </script>
 
-<script>
+    <script>
 
-  verificarAccesoPedido();
+        verificarAccesoPedido();
 
-</script>
- <script>
+    </script>
 
-  const hash =
-    window.location.hash;
-
-  if(hash.includes('access_token') &&
-     hash.includes('type=signup')){
-
-    supabaseClient.auth.signOut();
-
-    mostrarToast(
-      'Correo verificado. Ahora inicia sesión'
-    );
-
-    setTimeout(() => {
-
-      window.location.href =
-        'login.html';
-
-    }, 2000);
-  }
-
-</script>
 </body>
+
 </html>

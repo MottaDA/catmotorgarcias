@@ -1,12 +1,25 @@
-const SUPABASE_URL = 'https://eaffcbrysngjkdlbwctt.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_JGqWbrcPZ1IPYCvNvA_kgQ_IABTGbe0';
+// ========================================
+// CONFIGURACIÓN SUPABASE
+// ========================================
 
-const supabaseClient = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
+const SUPABASE_URL =
+  'https://eaffcbrysngjkdlbwctt.supabase.co';
 
-async function login(){
+const SUPABASE_ANON_KEY =
+  'sb_publishable_JGqWbrcPZ1IPYCvNvA_kgQ_IABTGbe0';
+
+const supabaseClient =
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+
+// ========================================
+// LOGIN
+// ========================================
+
+async function login() {
 
   const email =
     document.getElementById('email').value;
@@ -22,7 +35,8 @@ async function login(){
 
     });
 
-  if(error){
+  // Validación de errores
+  if (error) {
 
     mostrarToast(
       traducirError(error.message),
@@ -32,12 +46,11 @@ async function login(){
     return;
   }
 
+  // Obtener datos guardados temporalmente
   const datosRegistro =
-    localStorage.getItem(
-      'datosRegistro'
-    );
+    localStorage.getItem('datosRegistro');
 
-  if(datosRegistro){
+  if (datosRegistro) {
 
     const datos =
       JSON.parse(datosRegistro);
@@ -45,41 +58,50 @@ async function login(){
     const userId =
       data.user.id;
 
+    // Verificar si el perfil ya existe
     const { data: perfilExistente } =
       await supabaseClient
         .from('perfiles')
         .select('*')
         .eq('id', userId);
 
-    if(!perfilExistente ||
-       perfilExistente.length === 0){
+    // Crear perfil si no existe
+    if (
+      !perfilExistente ||
+      perfilExistente.length === 0
+    ) {
 
       const { error: perfilError } =
         await supabaseClient
           .from('perfiles')
           .insert([{
 
-            id:userId,
+            id: userId,
 
-            nombre:datos.nombre,
+            nombre: datos.nombre,
 
-            telefono:datos.telefono,
+            telefono: datos.telefono,
 
-            direccion:datos.direccion
+            direccion: datos.direccion
 
           }]);
 
-          console.log('Intentando guardar perfil');
-console.log(datos);
-console.log(userId);
-console.log(perfilError);
+      console.log(
+        'Intentando guardar perfil'
+      );
 
-      if(perfilError){
+      console.log(datos);
+      console.log(userId);
+      console.log(perfilError);
+
+      if (perfilError) {
 
         console.log(perfilError);
+
       }
     }
 
+    // Eliminar datos temporales
     localStorage.removeItem(
       'datosRegistro'
     );
@@ -97,7 +119,12 @@ console.log(perfilError);
   }, 1500);
 }
 
-async function register(){
+
+// ========================================
+// REGISTRO
+// ========================================
+
+async function register() {
 
   const nombre =
     document.getElementById('nombre').value;
@@ -122,30 +149,32 @@ async function register(){
 
     });
 
-  if(error){
+  // Manejo de errores
+  if (error) {
 
-  if(
-    error.message.includes(
-      'User already registered'
-    )
-  ){
+    if (
+      error.message.includes(
+        'User already registered'
+      )
+    ) {
+
+      mostrarToast(
+        'Este correo ya está registrado',
+        'error'
+      );
+
+      return;
+    }
 
     mostrarToast(
-      'Este correo ya está registrado',
+      traducirError(error.message),
       'error'
     );
 
     return;
   }
 
-  mostrarToast(
-    traducirError(error.message),
-    'error'
-  );
-
-  return;
-}
-
+  // Guardar datos temporalmente
   localStorage.setItem(
 
     'datosRegistro',
@@ -164,19 +193,30 @@ async function register(){
   );
 }
 
-async function verificarSesion(){
+
+// ========================================
+// VERIFICAR SESIÓN
+// ========================================
+
+async function verificarSesion() {
 
   const { data } =
     await supabaseClient.auth.getSession();
 
-  if(!data.session){
+  if (!data.session) {
 
-    window.location.href = 'login.html';
+    window.location.href =
+      'login.html';
+
   }
 }
 
 
-async function actualizarBotonAuth(){
+// ========================================
+// ACTUALIZAR BOTONES AUTH
+// ========================================
+
+async function actualizarBotonAuth() {
 
   const { data } =
     await supabaseClient.auth.getSession();
@@ -190,91 +230,128 @@ async function actualizarBotonAuth(){
   const logoutLink =
     document.getElementById('logout-link');
 
-  if(data.session){
+  // Usuario logueado
+  if (data.session) {
 
-    if(loginLink)
+    if (loginLink)
       loginLink.innerHTML = '';
 
-    if(registerLink)
+    if (registerLink)
       registerLink.innerHTML = '';
 
-    if(logoutLink){
+    if (logoutLink) {
 
       logoutLink.innerHTML = `
+
         <a href="#" onclick="logout()">
           Cerrar Sesión
         </a>
+
       `;
     }
 
-  }else{
+  } else {
 
-    if(loginLink){
+    // Usuario no logueado
+    if (loginLink) {
 
       loginLink.innerHTML = `
+
         <a href="login.html">
           Iniciar Sesión
         </a>
+
       `;
     }
 
-    if(registerLink){
+    if (registerLink) {
 
       registerLink.innerHTML = `
+
         <a href="register.html">
           Registrarse
         </a>
+
       `;
     }
 
-    if(logoutLink)
+    if (logoutLink)
       logoutLink.innerHTML = '';
   }
 }
 
-async function logout(){
+
+// ========================================
+// CERRAR SESIÓN
+// ========================================
+
+async function logout() {
 
   await supabaseClient.auth.signOut();
 
-  window.location.href = 'index.html';
+  window.location.href =
+    'index.html';
 }
 
-function mostrarToast(mensaje, tipo = 'success'){
+
+// ========================================
+// TOAST MENSAJES
+// ========================================
+
+function mostrarToast(
+  mensaje,
+  tipo = 'success'
+) {
 
   const toast =
     document.getElementById('toast');
 
-  toast.textContent = mensaje;
+  toast.textContent =
+    mensaje;
 
-  toast.className = `
-    show ${tipo}
-  `;
+  toast.className =
+    `show ${tipo}`;
 
   setTimeout(() => {
 
     toast.className =
-      toast.className.replace('show', '');
+      toast.className.replace(
+        'show',
+        ''
+      );
 
   }, 3000);
 }
 
-async function verificarUsuarioLogueado(){
+
+// ========================================
+// VERIFICAR USUARIO LOGUEADO
+// ========================================
+
+async function verificarUsuarioLogueado() {
 
   const { data } =
     await supabaseClient.auth.getSession();
 
-  if(data.session){
+  if (data.session) {
 
-    window.location.href = 'index.html';
+    window.location.href =
+      'index.html';
+
   }
 }
 
-async function recuperarPassword(){
+
+// ========================================
+// RECUPERAR CONTRASEÑA
+// ========================================
+
+async function recuperarPassword() {
 
   const email =
     document.getElementById('email').value;
 
-  if(!email){
+  if (!email) {
 
     mostrarToast(
       'Ingresa tu correo',
@@ -285,15 +362,16 @@ async function recuperarPassword(){
   }
 
   const { error } =
-    await supabaseClient.auth.resetPasswordForEmail(
-      email,
-      {
-        redirectTo:
-          'https://catmotorsgarcia.lat/reset-password.html'
-      }
-    );
+    await supabaseClient.auth
+      .resetPasswordForEmail(
+        email,
+        {
+          redirectTo:
+            'https://catmotorsgarcia.lat/reset-password.html'
+        }
+      );
 
-  if(error){
+  if (error) {
 
     mostrarToast(
       error.message,
@@ -309,31 +387,35 @@ async function recuperarPassword(){
 }
 
 
-function traducirError(error){
+// ========================================
+// TRADUCIR ERRORES
+// ========================================
 
-  if(
+function traducirError(error) {
+
+  if (
     error.includes(
       'Invalid login credentials'
     )
-  ){
+  ) {
 
     return 'Correo o contraseña incorrectos';
   }
 
-  if(
+  if (
     error.includes(
       'Password should be at least'
     )
-  ){
+  ) {
 
     return 'La contraseña debe tener mínimo 6 caracteres';
   }
 
-  if(
+  if (
     error.includes(
       'User already registered'
     )
-  ){
+  ) {
 
     return 'Este correo ya está registrado';
   }
@@ -341,7 +423,12 @@ function traducirError(error){
   return error;
 }
 
-async function actualizarPassword(){
+
+// ========================================
+// ACTUALIZAR CONTRASEÑA
+// ========================================
+
+async function actualizarPassword() {
 
   const password =
     document.getElementById(
@@ -355,7 +442,7 @@ async function actualizarPassword(){
 
     });
 
-  if(error){
+  if (error) {
 
     mostrarToast(
       error.message,
@@ -377,7 +464,12 @@ async function actualizarPassword(){
   }, 2000);
 }
 
-async function verificarAccesoPedido(){
+
+// ========================================
+// VERIFICAR ACCESO PEDIDOS
+// ========================================
+
+async function verificarAccesoPedido() {
 
   const { data } =
     await supabaseClient.auth.getSession();
@@ -392,19 +484,22 @@ async function verificarAccesoPedido(){
       'login-required'
     );
 
-  if(!pedidoContainer ||
-     !loginRequired)
-    return;
+  if (
+    !pedidoContainer ||
+    !loginRequired
+  ) return;
 
-  if(data.session){
+  // Usuario autenticado
+  if (data.session) {
 
     pedidoContainer.style.display =
       'block';
 
     loginRequired.innerHTML = '';
 
-  }else{
+  } else {
 
+    // Usuario no autenticado
     pedidoContainer.style.display =
       'none';
 
@@ -425,6 +520,7 @@ async function verificarAccesoPedido(){
         </a>
 
       </div>
+
     `;
   }
 }
