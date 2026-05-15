@@ -26,7 +26,9 @@
                         <li><a href="Productos.html">Productos</a></li>
                         <li><a href="Otras.html">Otras</a></li>
                         <li><a href="ayuda.html">Ayuda</a></li>
-                        <li id="auth-link"></li>
+                        <li id="login-link"></li>
+                        <li id="register-link"></li>
+                        <li id="logout-link"></li>
                         
 
                     </ul>
@@ -59,13 +61,13 @@
                                         </tr>
                                     </thead>
                                     <tbody id="contentProducts">
-                                        <tr>
+                                        <!--<tr>
                                             <td><img src="assets/img/products/product-01.jpg" alt="Producto"></td>
                                             <td>Lorem ipsum dolor sit.</td>
                                             <td>$15</td>
                                             <td><input type="number" min="1"></td>
                                             <td><button type="button">X</button></td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -74,10 +76,26 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5">
-                                                <button type="button" id="emptyCart">Vaciar Carrito</button>
-                                            </td>
-                                        </tr>
+
+    <td colspan="5">
+
+        <div id="pedido-container">
+
+            <button
+                onclick="exportCartToExcel()"
+                id="Enviar-ca">
+
+                Enviar a WhatsApp
+
+            </button>
+
+        </div>
+
+        <div id="login-required"></div>
+
+    </td>
+
+</tr> 
                                     </tfoot>
                                 </table>
                             </div>
